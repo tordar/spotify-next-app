@@ -1,0 +1,72 @@
+.main{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right bottom, rgb(213, 213, 235) 0%, rgb(196, 241, 250) 100%);
+    font-family: "Poppins", sans-serif;
+    flex-direction: column;
+}
+
+.glass{
+    background: rgb(2,0,36);
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.534) 100%);
+    min-height: 90vh;
+    width: 95%;
+    border-radius: 2rem;
+    display: flex;
+}
+
+@media only screen and (max-width: 800px) {
+.glass {
+flex-direction: column;
+}
+}
+
+.name{
+position: relative;
+}
+
+.title{
+position: relative;
+bottom: 15px;
+color: rgb(61, 61, 61);
+}
+
+.dashboard{
+background-color: aliceblue;
+display: flex;
+flex: 1;
+flex-direction: column;
+border-radius: 2rem 0 0 2rem;
+align-items: center;
+justify-content: space-evenly;
+text-align: center;
+}
+
+.link {
+display: flex;
+margin: 1rem 0rem;
+padding: 1rem 3rem;
+min-width: 100px;
+align-items: center;
+justify-content: space-evenly;
+border-radius: 2rem;
+color: black;
+background: rgb(2,0,36);
+background: linear-gradient(to right bottom, rgb(213, 213, 235) 0%, rgb(196, 241, 250) 100%);
+}
+
+.link:hover{
+background: linear-gradient(to right bottom, rgb(220, 220, 252) 0%, rgb(207, 243, 250) 100%);
+}
+
+.app{
+margin: 1.5rem;
+flex: 3;
+flex-direction: column;
+padding: 0.5rem;
+border-radius: 2rem;
+overflow: auto;
+max-height: 80vh;
+}
