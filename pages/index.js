@@ -13,6 +13,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
+  const [currentArtist, setCurrentArtist] = useState()
 
 
   useEffect(() => {
@@ -23,8 +24,19 @@ export default function Home() {
           setRecentlyPlayed(res.items)
         })
         api.getMyCurrentPlaybackState().then((res) => {
-            // console.log(res);
-            setCurrentlyPlaying(res.item.name)
+            console.log(res);
+            console.log(res.item)
+            let artist = res.item.artists.map((artist) => artist.name)
+            console.log(artist)
+            if(res){
+              setCurrentlyPlaying(res.item.name)
+              setCurrentArtist(artist)
+            }
+            else{
+              setCurrentlyPlaying('No song currently playing')
+            }
+            
+            
             setIsLoading(false)
       });
     }
@@ -40,8 +52,9 @@ export default function Home() {
       <main className={styles.main}>
 
   <h1 className={styles.title}>Hey, {username}!</h1>
-  <h2 style={{ marginTop: 42 }}>You're currently playing track is: {currentlyPlaying}</h2>
-  <h2 style={{ marginTop: 42 }}>Here's your recently played tracks</h2>
+  <h2 style={{ marginTop: 42 }}>You're currently playing track is: </h2>
+  <h2>{currentlyPlaying} by {currentArtist}</h2>
+  <h2 style={{ marginTop: 42 }}>Here's your recently played tracks:</h2>
 
       {isLoading && <p>Loading...</p>}
       <div style={{ marginTop: 72 }}>

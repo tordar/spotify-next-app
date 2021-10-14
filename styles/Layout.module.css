@@ -37,7 +37,7 @@ color: rgb(61, 61, 61);
 background-color: aliceblue;
 display: flex;
 flex: 1;
-flex-direction: column;
+flex-direction: row;
 border-radius: 2rem 0 0 2rem;
 align-items: center;
 justify-content: space-evenly;
