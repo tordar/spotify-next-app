@@ -10,24 +10,18 @@ const Layout = ({ children }) => {
         <div className={style.main}>
             <div className={style.glass}>
                 <div className={style.dashboard}>
-                    <div className={style.info}>
-                    
-                    
-                    </div>
-                    <nav>
                         <Link href="/">
-                            <div className={style.link}>HOME</div>
+                            <div className={style.link}>home</div>
                          </Link>
                          <Link href="/recent">
-                            <div className={style.link}>RECENT</div>
+                            <div className={style.link}>recent</div>
                          </Link>
                          <Link href="/about">
-                            <div className={style.link}>ABOUT</div>
+                            <div className={style.link}>playlists</div>
                          </Link>
                          <Link href="/skills">
-                            <div className={style.link}>SKILLS</div>
+                            <div className={style.link}>new artists</div>
                          </Link>
-                    </nav>
                 </div>
                 <div className={style.app}>
                 { children }

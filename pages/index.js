@@ -26,9 +26,8 @@ export default function Home() {
         api.getMyCurrentPlaybackState().then((res) => {
             console.log(res);
             console.log(res.item)
-            let artist = res.item.artists.map((artist) => artist.name)
-            console.log(artist)
             if(res){
+              let artist = res.item.artists.map((artist) => artist.name)
               setCurrentlyPlaying(res.item.name)
               setCurrentArtist(artist)
             }
@@ -53,11 +52,11 @@ export default function Home() {
 
   <h1 className={styles.title}>Hey, {username}!</h1>
   <h2 style={{ marginTop: 42 }}>You're currently playing track is: </h2>
-  <h2>{currentlyPlaying} by {currentArtist}</h2>
+  <h2>{currentlyPlaying}, {currentArtist}</h2>
   <h2 style={{ marginTop: 42 }}>Here's your recently played tracks:</h2>
 
       {isLoading && <p>Loading...</p>}
-      <div style={{ marginTop: 72 }}>
+      <div className={styles.tileContainer} >
           {recentlyPlayed.map(({ track }) => (
                 <TrackPreview key={`${track.id}`} track={track} />
               ))}
