@@ -1,9 +1,13 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 
 
-export default function RecentlyPlayed() {
+export default function CurrentlyPlaying({
+
+}) {
+
     
   return (
     <div>
@@ -14,7 +18,7 @@ export default function RecentlyPlayed() {
       </Head>
       <div>
         <h1>
-          Recently played tracks
+          Currently Playing
         </h1>
         </div>
     </div>

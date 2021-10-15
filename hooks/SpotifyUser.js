@@ -22,17 +22,21 @@ const SpotifyUser = () => {
     }
   }, [token]);
 
+ 
+
   useEffect(() => {
     const access_token = getTokenFromPath(asPath);
+    console.log("access token:" + access_token)
 
     if (access_token) {
       api.setAccessToken(access_token);
       setToken(access_token);
 
       // Remove token from url
-      replace(asPath.split("/#")[0]);
+      // replace(asPath.split("/#")[0]);
     }
   }, [asPath]);
+
 
   const initiateLogin = () =>
     push({

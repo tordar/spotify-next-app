@@ -25,7 +25,6 @@ export default function Home() {
         })
         api.getMyCurrentPlaybackState().then((res) => {
             console.log(res);
-            console.log(res.item)
             if(res){
               let artist = res.item.artists.map((artist) => artist.name)
               setCurrentlyPlaying(res.item.name)

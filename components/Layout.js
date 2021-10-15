@@ -13,8 +13,8 @@ const Layout = ({ children }) => {
                         <Link href="/">
                             <div className={style.link}>home</div>
                          </Link>
-                         <Link href="/recent">
-                            <div className={style.link}>recent</div>
+                         <Link href="/current">
+                            <div className={style.link}>current</div>
                          </Link>
                          <Link href="/about">
                             <div className={style.link}>playlists</div>
