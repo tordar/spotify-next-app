@@ -14,6 +14,8 @@ export default function Home() {
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
   const [currentArtist, setCurrentArtist] = useState()
+  const [search, setSearch] = useState('')
+  const [input, setInput] = useState('elvis')
 
 
   useEffect(() => {
@@ -33,13 +35,29 @@ export default function Home() {
             else{
               setCurrentlyPlaying('No song currently playing')
             }
-            
-            
             setIsLoading(false)
       });
     }
   }, [username])
-  
+
+const searchFunction = (e) => {
+ 
+  setInput(e.target)
+  e.preventDefault();
+}
+
+  useEffect((search) => {
+      if(input){
+        setSearch(input)
+      }
+      api.searchTracks(search).then((res)=>{
+        console.log(res)
+      })
+    
+  }, [search])
+
+   
+
   return (
     <div className={styles.container}>
       <Head>
@@ -48,6 +66,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+<form>
+  <input onSubmit={searchFunction}></input>
+  <input type="submit"></input>
+  </form>
 
   <h1 className={styles.title}>Hey, {username}!</h1>
   <h2 style={{ marginTop: 42 }}>You're currently playing track is: </h2>
