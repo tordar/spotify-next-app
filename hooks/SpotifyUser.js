@@ -19,7 +19,7 @@ const SpotifyUser = () => {
     if (!token && route !== "/login" && !getTokenFromPath(asPath)) {
       console.log(route);
       push("/login");
-    }
+    } 
   }, [token]);
 
  
@@ -33,7 +33,7 @@ const SpotifyUser = () => {
       setToken(access_token);
 
       // Remove token from url
-      // replace(asPath.split("/#")[0]);
+      replace(asPath.split("/#")[0]);
     }
   }, [asPath]);
 
@@ -54,11 +54,15 @@ const SpotifyUser = () => {
     setUsername(display_name || email);
   };
 
+
   useEffect(() => {
     if (token && !username) {
       fetchAccountInfo();
     }
   }, [token, username]);
+
+
+
 
   return { username, initiateLogin, api };
 };

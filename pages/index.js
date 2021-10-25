@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import SpotifyUser from '../hooks/SpotifyUser'
 import TrackPreview from '../components/TrackPreview'
+import SearchResults from '../components/SearchResults'
 const Spotify = require('spotify-web-api-js')
 
 
@@ -14,8 +15,10 @@ export default function Home() {
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
   const [currentArtist, setCurrentArtist] = useState()
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState([])
   const [input, setInput] = useState('elvis')
+  const [token, setToken] = useState();
+
 
 
   useEffect(() => {
@@ -40,23 +43,24 @@ export default function Home() {
     }
   }, [username])
 
+const handleInput = (e) => {
+  setInput(e.target.value)
+  console.log(input)
+  }
+
 const searchFunction = (e) => {
- 
-  setInput(e.target)
-  e.preventDefault();
+  api.searchTracks(input).then((res)=>{
+    console.log(search)
+    setSearch(res.tracks.items)
+})
 }
+ 
+  useEffect(() => {
+    if (token && username) {
+      initiateLogin();
+    }
+  }, []);
 
-  useEffect((search) => {
-      if(input){
-        setSearch(input)
-      }
-      api.searchTracks(search).then((res)=>{
-        console.log(res)
-      })
-    
-  }, [search])
-
-   
 
   return (
     <div className={styles.container}>
@@ -67,11 +71,17 @@ const searchFunction = (e) => {
       </Head>
       <main className={styles.main}>
 <form>
-  <input onSubmit={searchFunction}></input>
-  <input type="submit"></input>
+  <input onChange={handleInput} type="text"></input>
+  <button onClick={searchFunction} type="button">Search</button>
   </form>
 
-  <h1 className={styles.title}>Hey, {username}!</h1>
+  <div>
+          {/* {search.map(({ album }) => (
+                <SearchResults key={album.id} track={album} />
+              ))} */}
+      </div>
+
+  <h1 className={styles.title} style={{ marginTop: 42 }}>Hey, {username}!</h1>
   <h2 style={{ marginTop: 42 }}>You're currently playing track is: </h2>
   <h2>{currentlyPlaying}, {currentArtist}</h2>
   <h2 style={{ marginTop: 42 }}>Here's your recently played tracks:</h2>
@@ -79,7 +89,7 @@ const searchFunction = (e) => {
       {isLoading && <p>Loading...</p>}
       <div className={styles.tileContainer} >
           {recentlyPlayed.map(({ track }) => (
-                <TrackPreview key={`${track.id}`} track={track} />
+                <TrackPreview key={`${track.played_at}`} track={track} />
               ))}
       </div>
     </main>
